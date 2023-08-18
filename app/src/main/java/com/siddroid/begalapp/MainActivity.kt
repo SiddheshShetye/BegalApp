@@ -1,6 +1,7 @@
 package com.siddroid.begalapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.siddroid.begal.core.Begal
 import com.siddroid.begal.core.BegalConfig
@@ -36,15 +37,20 @@ class MainActivity : AppCompatActivity() {
         binding.rvDogs.adapter = adapter
         binding.btnPrevious.isEnabled = Begal.getCurrentIndex() > 0
         binding.btnNew.setOnClickListener {
-            val count =
-                if (binding.edtCount.text.toString().isBlank() || binding.edtCount.text.toString() == "0"
-                ) 0 else binding.edtCount.text.toString().toInt()
 
+            if (binding.edtCount.text.toString()
+                    .isBlank() || binding.edtCount.text.toString() == "0"
+            ) {
+                Toast.makeText(this, "Please provide value in input field befor proceeding", Toast
+                    .LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            val count = binding.edtCount.text.toString().toInt()
             binding.edtCount.text.clear()
             if (count == 0) {
                 Begal.getImage(getImages)
             } else {
-                Begal.getImages(count, getImages)
+                Begal.getImages(if (count > 10) 10 else count, getImages)
             }
         }
         binding.btnNext.setOnClickListener {
@@ -53,6 +59,6 @@ class MainActivity : AppCompatActivity() {
         binding.btnPrevious.setOnClickListener {
             Begal.getPreviousImage(getImages)
         }
-        binding.btnNew.performClick()
+        binding.btnNext.performClick()
     }
 }

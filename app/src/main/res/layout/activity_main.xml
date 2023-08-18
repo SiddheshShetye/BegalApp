@@ -71,7 +71,7 @@
         android:id="@+id/btnNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New"
+        android:text="Go"
         app:layout_constraintEnd_toEndOf="@id/glRight"
         app:layout_constraintTop_toBottomOf="@id/glBottom"
         app:layout_constraintBottom_toBottomOf="parent"
