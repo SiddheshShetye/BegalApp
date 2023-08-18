@@ -47,11 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
             val count = binding.edtCount.text.toString().toInt()
             binding.edtCount.text.clear()
-            if (count == 0) {
-                Begal.getImage(getImages)
-            } else {
-                Begal.getImages(if (count > 10) 10 else count, getImages)
-            }
+            Begal.getImages(if (count > 10) 10 else count, getImages)
         }
         binding.btnNext.setOnClickListener {
             Begal.getNexImage(getImages)
